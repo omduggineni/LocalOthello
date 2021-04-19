@@ -23,7 +23,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install pyinstaller
-        pyinstaller main.py
+        pyinstaller --onefile main.py
     - name: Upload Build Results
       uses: actions/upload-artifact@v2.2.3
       with:
@@ -42,7 +42,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install pyinstaller
-        pyinstaller main.py
+        pyinstaller --onefile main.py
     - name: Upload Build Results
       uses: actions/upload-artifact@v2.2.3
       with:
@@ -61,7 +61,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install pyinstaller
-        pyinstaller main.py
+        pyinstaller --onefile main.py
     - name: Upload Build Results
       uses: actions/upload-artifact@v2.2.3
       with:
