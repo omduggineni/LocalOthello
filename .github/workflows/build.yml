@@ -27,7 +27,7 @@ jobs:
     - name: Upload Build Results
       uses: actions/upload-artifact@v2.2.3
       with:
-        name: build
+        name: linux_build
         path: .
   build_macos:
     runs-on: macos-latest
@@ -46,7 +46,7 @@ jobs:
     - name: Upload Build Results
       uses: actions/upload-artifact@v2.2.3
       with:
-        name: build
+        name: macos_build
         path: .
   build_windows:
     runs-on: windows-latest
@@ -65,5 +65,5 @@ jobs:
     - name: Upload Build Results
       uses: actions/upload-artifact@v2.2.3
       with:
-        name: build
+        name: windows_build
         path: .
