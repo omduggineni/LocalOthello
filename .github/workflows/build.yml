@@ -28,7 +28,7 @@ jobs:
       uses: actions/upload-artifact@v2.2.3
       with:
         name: linux_build
-        path: .
+        path: dist/
   build_macos:
     runs-on: macos-latest
 
@@ -47,7 +47,7 @@ jobs:
       uses: actions/upload-artifact@v2.2.3
       with:
         name: macos_build
-        path: .
+        path: dist/
   build_windows:
     runs-on: windows-latest
 
@@ -66,4 +66,4 @@ jobs:
       uses: actions/upload-artifact@v2.2.3
       with:
         name: windows_build
-        path: .
+        path: dist/
