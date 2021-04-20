@@ -30,4 +30,6 @@ loader.exec_module(othello_resource)
 
 print(othello_resource.possible_moves("........"*3+"...xo..."+"...ox..."+"........"*3, "x"))
 
+time_limit = args.time
+
 print(args)
