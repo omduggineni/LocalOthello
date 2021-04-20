@@ -11,3 +11,6 @@ def run_program(name, board_state, player):
     best_move.value = None
     still_running = SimpleNamespace()
     still_running.value = 1
+
+    if player in program_cache:
+        ...
