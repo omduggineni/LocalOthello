@@ -1,4 +1,5 @@
-print("Hello, World!")
 import tkinter
+import run
+
 top = tkinter.Tk()
 top.mainloop()
