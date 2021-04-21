@@ -80,6 +80,9 @@ def run_program(board_state, player_xo, player_name, time_limit, othello_resourc
     process.start()
     start_time_limit = time.perf_counter()
     while ready.value == 0:
+        if not process.is_alive():
+            print("ERROR: your code crashed :(")
+            sys.exit(1)
         if time.perf_counter() > start_time_limit+1:
             process.kill()
             print("ERROR: Code that runs on import must finish within 1s")
