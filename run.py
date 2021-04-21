@@ -14,9 +14,6 @@ def load_program(name):
     if name == "edax":
         from runners import edax_runner
         return edax_runner, True
-    if name == "console":
-        from runners import console_runner
-        return console_runner, True
     if name == "random":
         from runners import random_runner
         return random_runner, True
@@ -53,6 +50,23 @@ def program_caller(player_name, board_state, player_xo, best_move, still_running
         strat.best_strategy(board_state, player_xo, best_move)
 
 def run_program(board_state, player_xo, player_name, time_limit, othello_resource_path):
+    if player_name == "console":
+        othello_resource = load_othelloresource(othello_resource_path)
+        possible_moves = othello_resource.possible_moves(board_state, player_xo)
+        print(f"Possible moves: {possible_moves}")
+        possible_moves = set(possible_moves)
+        while True:
+            try:
+                move = int(input("Choose your move: "))
+                assert move in possible_moves
+                return move
+            except AssertionError:
+                print("ERROR: Not a valid move")
+            except ValueError:
+                print("ERROR: Not a valid move")
+            except EOFError:
+                print("ERROR: Not a valid move")
+
     best_move = mp.Value("i")
     best_move.value = 0
     still_running = mp.Value("i")
