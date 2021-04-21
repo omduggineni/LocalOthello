@@ -16,6 +16,7 @@ def load_othelloresource(path):
     module.make_move = default_make_move
     loader.exec_module(module)
     return module
+
 if __name__ == "__main__":
     import random
     import multiprocessing as mp
