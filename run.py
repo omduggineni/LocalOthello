@@ -41,3 +41,6 @@ def run_program(board_state, player_xo, player_name, time_limit, othello_resourc
     process.join(2)
     process.kill()
     return best_move.value
+
+if __name__ == "__main__":
+    mp.freeze_support()
