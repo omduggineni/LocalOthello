@@ -11,9 +11,6 @@ def load_program_from_file(filename):
     return module
 
 def load_program(name):
-    if name == "edax":
-        from runners import edax_runner
-        return edax_runner, True
     if name == "random":
         from runners import random_runner
         return random_runner, True

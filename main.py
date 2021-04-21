@@ -34,8 +34,8 @@ if __name__ == "__main__":
 
     cmd = argparse.ArgumentParser()
     cmd.add_argument("-o", "--othello-resource", required=True, help="path to othelloresource.py (you don't have to name it that)")
-    cmd.add_argument("-1", "--player-one", required=False, default="console", help="first player (filename or \"console\", \"random\", \"edax\", default: \"console\")")
-    cmd.add_argument("-2", "--player-two", required=False, default="console", help="second player (filename or \"console\", \"random\", \"edax\", default: \"console\")")
+    cmd.add_argument("-1", "--player-one", required=False, default="console", help="first player (filename or \"console\", \"random\", default: \"console\")")
+    cmd.add_argument("-2", "--player-two", required=False, default="console", help="second player (filename or \"console\", \"random\", default: \"console\")")
     cmd.add_argument("-t", "--time", "--time-limit", required=False, default=2, help="time limit (seconds, default=2)", type=int)
     cmd.add_argument("-r", "--machine-readable", help="machine-readable output", action="store_true", default=False, required=False)
 
