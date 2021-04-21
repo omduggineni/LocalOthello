@@ -7,6 +7,23 @@ on:
     branches: [ main ]
 
 jobs:
+  build_pyz:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - name: Build
+      run: |
+        python -m zipapp . -m "main:main" -o ../output.pyz
+    - name: Upload Build Results
+      uses: actions/upload-artifact@v2.2.3
+      with:
+        name: pyz_build
+        path: ../output.pyz
   build_linux:
     runs-on: ubuntu-latest
 
