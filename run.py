@@ -44,10 +44,10 @@ def program_caller(player_name, board_state, player_xo, best_move, still_running
     if provide_othello_resource:
         othello_resource = load_othelloresource(othello_resource_path)
         ready.value = 1
-        strat.best_strategy(board_state, player_xo, best_move, othello_resource=othello_resource)
+        strat.best_strategy(board_state, player_xo, best_move, still_running, othello_resource=othello_resource)
     else:
         ready.value = 1
-        strat.best_strategy(board_state, player_xo, best_move)
+        strat.best_strategy(board_state, player_xo, best_move, still_running)
 
 def run_program(board_state, player_xo, player_name, time_limit, othello_resource_path):
     if player_name == "console":
@@ -68,7 +68,7 @@ def run_program(board_state, player_xo, player_name, time_limit, othello_resourc
                 print("ERROR: Not a valid move")
 
     best_move = mp.Value("i")
-    best_move.value = 0
+    best_move.value = -1
     still_running = mp.Value("i")
     still_running.value = 1
     ready = mp.Value("i")
@@ -83,7 +83,10 @@ def run_program(board_state, player_xo, player_name, time_limit, othello_resourc
             print("ERROR: Code that runs on import must finish within 1s")
             print("Any code outside a function or if __name__ == \"__main__\" block, including imports, must terminate within 1 second.")
             sys.exit(1)
-    process.join(2)
+    process.join(time_limit-0.05)
+    if process.is_alive():
+        still_running.value = 0
+        process.join(0.05)
     process.kill()
     return best_move.value
 
