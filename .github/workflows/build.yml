@@ -25,7 +25,7 @@ jobs:
       with:
         name: pyz_build
         path: output.pyz
-    - name: Test
+    - name: Test (extremely basic)
       run: |
         python output.pyz --help
   build_linux:
