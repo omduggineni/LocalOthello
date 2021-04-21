@@ -19,11 +19,12 @@ jobs:
     - name: Build
       run: |
         python -m zipapp . -m "main:main" -o ../output.pyz
+        mv ../output.pyz output.pyz
     - name: Upload Build Results
       uses: actions/upload-artifact@v2.2.3
       with:
         name: pyz_build
-        path: ../output.pyz
+        path: output.pyz
   build_linux:
     runs-on: ubuntu-latest
 
