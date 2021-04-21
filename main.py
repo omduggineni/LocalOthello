@@ -1,27 +1,27 @@
-import run
-import argparse
 from importlib import machinery as importlib_machinery
 import types
-import sys
-import random
-import multiprocessing as mp
 
-def default_possible_moves(board, token):
-        print("error - you don't define a possible_moves method")
-        sys.exit(1)
-        return []
-def default_make_move(board, token, index):
-        print("error - you don't define a make_move method")
-        sys.exit(1)
-        return ""
 def load_othelloresource(path):
     loader = importlib_machinery.SourceFileLoader("othello_resource", path)
     module = types.ModuleType(loader.name)
+    def default_possible_moves(board, token):
+        print("error - you don't define a possible_moves method")
+        sys.exit(1)
+        return []
+    def default_make_move(board, token, index):
+        print("error - you don't define a make_move method")
+        sys.exit(1)
+        return ""
     module.possible_moves = default_possible_moves
     module.make_move = default_make_move
     loader.exec_module(module)
     return module
 if __name__ == "__main__":
+    import random
+    import multiprocessing as mp
+    import run
+    import sys
+    import argparse
     mp.freeze_support()
 
     cmd = argparse.ArgumentParser()
