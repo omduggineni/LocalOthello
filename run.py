@@ -1,5 +1,6 @@
 import multiprocessing as mp
 import sys
+import time
 
 def load_program_from_file(filename):
     from importlib import machinery as importlib_machinery
@@ -61,8 +62,13 @@ def run_program(board_state, player_xo, player_name, time_limit, othello_resourc
 
     process = mp.Process(target=program_caller, args=(player_name, board_state, player_xo, best_move, still_running, othello_resource_path, ready))
     process.start()
+    start_time_limit = time.perf_counter()
     while ready.value == 0:
-        ...
+        if time.perf_counter() > start_time_limit+1:
+            process.kill()
+            print("ERROR: Code that runs on import must finish within 1s")
+            print("Any code outside a function or if __name__ == \"__main__\" block, including imports, must terminate within 1 second.")
+            sys.exit(1)
     process.join(2)
     process.kill()
     return best_move.value
