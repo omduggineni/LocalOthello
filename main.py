@@ -1,5 +1,6 @@
 from importlib import machinery as importlib_machinery
 import types
+import sys
 
 def load_othelloresource(path):
     loader = importlib_machinery.SourceFileLoader("othello_resource", path)
@@ -24,13 +25,10 @@ def display_board(board, machine_readable=False):
         for i in range(0, 64, 8):
             print(" ".join(board[i:i+8]))
 
-if __name__ == "__main__":
+def main():
     import random
-    import multiprocessing as mp
     import run
-    import sys
     import argparse
-    mp.freeze_support()
 
     cmd = argparse.ArgumentParser()
     cmd.add_argument("-o", "--othello-resource", required=True, help="path to othelloresource.py (you don't have to name it that)")
@@ -80,3 +78,8 @@ if __name__ == "__main__":
         print(f"O wins by +{o_score-x_score}")
     else:
         print("Tie")
+
+if __name__ == "__main__":
+    import multiprocessing as mp
+    mp.freeze_support()
+    main()
