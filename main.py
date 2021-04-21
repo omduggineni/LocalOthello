@@ -4,6 +4,7 @@ from importlib import machinery as importlib_machinery
 import types
 import sys
 import random
+import multiprocessing as mp
 
 def default_possible_moves(board, token):
         print("error - you don't define a possible_moves method")
@@ -21,6 +22,8 @@ def load_othelloresource(path):
     loader.exec_module(module)
     return module
 if __name__ == "__main__":
+    mp.freeze_support()
+
     cmd = argparse.ArgumentParser()
     cmd.add_argument("-o", "--othello-resource", required=True, help="path to othelloresource.py (you don't have to name it that)")
     cmd.add_argument("-1", "--player-one", required=False, default="console", help="first player (filename or \"console\", \"edax\", default: \"console\")")
