@@ -6,7 +6,7 @@ import random
 def load_program_from_file(filename):
     from importlib import machinery as importlib_machinery
     import types
-    loader = importlib_machinery.SourceFileLoader("othello_resource", filename)
+    loader = importlib_machinery.SourceFileLoader("your_othello_strategy", filename)
     module = types.ModuleType(loader.name)
     loader.exec_module(module)
     return module
@@ -81,7 +81,7 @@ def run_program(board_state, player_xo, player_name, time_limit, othello_resourc
     start_time_limit = time.perf_counter()
     while ready.value == 0:
         if not process.is_alive():
-            print("ERROR: your code crashed :(")
+            print("ERROR: your code crashed while loading :(")
             sys.exit(1)
         if time.perf_counter() > start_time_limit+1:
             process.kill()
