@@ -47,20 +47,22 @@ def program_caller(player_name, board_state, player_xo, best_move, still_running
         ready.value = 1
         strat.best_strategy(board_state, player_xo, best_move, still_running)
 
+move_letters = "ABCDEFGH"
+def move_to_letters(move_num):
+    return move_letters[move_num%8]+str(move_num//8+1)
+
 def run_program(board_state, player_xo, player_name, time_limit, othello_resource_path):
     if player_name == "console":
         othello_resource = load_othelloresource(othello_resource_path)
         possible_moves = othello_resource.possible_moves(board_state, player_xo)
-        print(f"Possible moves: {possible_moves}")
-        possible_moves = set(possible_moves)
+        possible_moves_letters = [move_to_letters(mv) for mv in possible_moves]
+        print(f"Possible moves: {possible_moves_letters}")
+        possible_moves = {k:v for k,v in zip(possible_moves_letters, possible_moves)}
         while True:
             try:
-                move = int(input("Choose your move: "))
-                assert move in possible_moves
-                return move
-            except AssertionError:
-                print("ERROR: Not a valid move")
-            except ValueError:
+                move = input("Choose your move: ")
+                return possible_moves[move.upper()]
+            except KeyError:
                 print("ERROR: Not a valid move")
             except EOFError:
                 print("ERROR: Not a valid move")
