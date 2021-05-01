@@ -38,8 +38,7 @@ def main():
     import argparse
 
     cmd = argparse.ArgumentParser()
-    cmd.add_argument("-v", "--version", action="version",
-        version="v1.2.0")
+    cmd.add_argument("-v", "--version", action="version", version="v1.2.0")
     cmd.add_argument("-o", "--othello-resource", required=True, help="path to othelloresource.py (you don't have to name it that)")
     cmd.add_argument("-1", "--player-one", required=False, default="console", help="first player (filename or \"console\", \"random\", default: \"console\")")
     cmd.add_argument("-2", "--player-two", required=False, default=None, help="second player (filename or \"console\", \"random\", default: same as first player)")
